@@ -1,14 +1,18 @@
-# claude-workflows
+# claude-plugins
+
+Claude Code plugins from [frictionlesscode.com](https://frictionlesscode.com).
+This repo is the `frictionlesscode` marketplace; each plugin lives under
+`plugins/`.
+
+## `claude-workflows`
 
 Two Claude Code skills I use on my own projects. Both layer on top of
 [Superpowers](https://github.com/obra/superpowers) and both refuse to run
 without it rather than falling back to a worse version of what it already
 does.
 
-## Install
-
 ```
-/plugin marketplace add frictionlesscode/claude-workflows
+/plugin marketplace add frictionlesscode/claude-plugins
 /plugin install claude-workflows@frictionlesscode
 ```
 
@@ -18,8 +22,6 @@ Superpowers first, if you do not already have it:
 /plugin marketplace add obra/superpowers-marketplace
 /plugin install superpowers@superpowers-marketplace
 ```
-
-## What is in here
 
 ### `fixing-raw-bugs`
 
@@ -69,7 +71,7 @@ samples of your writing.
 
 Use `/write-article`.
 
-## Verifying it works
+### Verifying it works
 
 1. Give `fixing-raw-bugs` a fresh list of 8 to 10 mixed bugs. It should stop
    after triage rather than fixing, and nothing should land in `mechanical`
