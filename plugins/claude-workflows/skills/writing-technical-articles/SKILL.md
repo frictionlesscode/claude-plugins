@@ -1,6 +1,6 @@
 ---
 name: writing-technical-articles
-description: Long-form technical article workflow for a personal site, built on Superpowers. Interviews you about the idea, drafts sections in parallel with subagents that leave machine-findable stubs rather than inventing facts, mines your repos and notes for real specifics, batches every open question back to you in chat, then runs a single-author voice pass so parallel drafting does not read like four different writers. Use this whenever someone wants to write a blog post, technical article, engineering write-up, essay or long-form piece for their own site, says "help me write an article about", "turn this project into a post", "write this up", or wants to resume an article already in progress. Also use it for revision rounds on an existing draft. Requires the Superpowers plugin.
+description: Drafts a long-form technical article, blog post or engineering write-up for a personal site. Interviews you, drafts sections in parallel leaving machine-findable stubs instead of invented facts, batches every open question back to you, then runs a single-author voice pass so it does not read like four writers. Use for "help me write an article about", "turn this project into a post", "write this up", revision rounds on a draft, or resuming an article already in progress. Requires the Superpowers plugin.
 ---
 
 # Writing technical articles

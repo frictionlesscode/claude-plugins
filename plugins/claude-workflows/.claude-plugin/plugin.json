@@ -1,7 +1,7 @@
 {
   "name": "claude-workflows",
   "description": "Two workflow skills that layer on Superpowers: fixing-raw-bugs triages a pile of unstructured bug reports into evidence-backed, cost-tiered batches, and writing-technical-articles drafts long-form pieces without inventing facts.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Michael Swanson"
   },
