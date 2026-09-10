@@ -1,0 +1,18 @@
+{
+  "name": "claude-workflows",
+  "description": "Two workflow skills that layer on Superpowers: fixing-raw-bugs triages a pile of unstructured bug reports into evidence-backed, cost-tiered batches, and writing-technical-articles drafts long-form pieces without inventing facts.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Michael Swanson"
+  },
+  "homepage": "https://frictionlesscode.com/writing/fixing-raw-bugs/",
+  "repository": "https://github.com/frictionlesscode/claude-workflows",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "bug-triage",
+    "superpowers",
+    "workflows",
+    "writing"
+  ]
+}
