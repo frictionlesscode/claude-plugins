@@ -8,8 +8,13 @@
   },
   "plugins": [
     {
-      "name": "claude-workflows",
-      "source": "./plugins/claude-workflows",
+      "name": "fixing-raw-bugs",
+      "source": "./plugins/fixing-raw-bugs",
+      "category": "development"
+    },
+    {
+      "name": "writing-technical-articles",
+      "source": "./plugins/writing-technical-articles",
       "category": "productivity"
     }
   ]

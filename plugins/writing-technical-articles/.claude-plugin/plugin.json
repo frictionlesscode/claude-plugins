@@ -1,0 +1,17 @@
+{
+  "name": "writing-technical-articles",
+  "description": "Long-form article workflow for a personal site. Interviews you, drafts sections in parallel leaving stubs instead of invented facts, batches open questions, then runs a single-author voice pass. Ships the author's own voice spec as a worked example.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Michael Swanson"
+  },
+  "homepage": "https://frictionlesscode.com/writing/fixing-raw-bugs/",
+  "repository": "https://github.com/frictionlesscode/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "writing",
+    "articles",
+    "superpowers",
+    "workflows"
+  ]
+}

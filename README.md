@@ -4,16 +4,16 @@ Claude Code plugins from [frictionlesscode.com](https://frictionlesscode.com).
 This repo is the `frictionlesscode` marketplace; each plugin lives under
 `plugins/`.
 
-## `claude-workflows`
-
-Two Claude Code skills I use on my own projects. Both layer on top of
+Two plugins, one skill each. Both layer on top of
 [Superpowers](https://github.com/obra/superpowers) and both refuse to run
 without it rather than falling back to a worse version of what it already
-does.
+does. Install them separately, so taking one does not saddle you with the
+other.
 
 ```
 /plugin marketplace add frictionlesscode/claude-plugins
-/plugin install claude-workflows@frictionlesscode
+/plugin install fixing-raw-bugs@frictionlesscode
+/plugin install writing-technical-articles@frictionlesscode
 ```
 
 Superpowers first, if you do not already have it:
@@ -23,7 +23,7 @@ Superpowers first, if you do not already have it:
 /plugin install superpowers@superpowers-marketplace
 ```
 
-### `fixing-raw-bugs`
+## `fixing-raw-bugs`
 
 An intake layer for the pile that arrives before a plan exists. Superpowers
 is excellent from `here is what I want built` onward and has no opinion on
@@ -58,7 +58,7 @@ For you it might mean an MCP server pointed at your log aggregation, or an
 export-and-replay path for one real session. Build it alone, before the
 fixes.
 
-### `writing-technical-articles`
+## `writing-technical-articles`
 
 Long-form drafting for a personal site. Parallel section agents leave
 grep-findable `[[STUB:]]` markers instead of inventing details, every
@@ -71,7 +71,7 @@ samples of your writing.
 
 Use `/write-article`.
 
-### Verifying it works
+## Verifying it works
 
 1. Give `fixing-raw-bugs` a fresh list of 8 to 10 mixed bugs. It should stop
    after triage rather than fixing, and nothing should land in `mechanical`

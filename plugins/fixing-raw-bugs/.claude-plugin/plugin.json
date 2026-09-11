@@ -1,0 +1,17 @@
+{
+  "name": "fixing-raw-bugs",
+  "description": "Intake layer above Superpowers for a pile of raw, unsorted bug reports. Triages with evidence rather than guesswork, builds missing test instrumentation before attempting fixes, asks every open design question in one batch, then hands cost-tiered batches to Superpowers.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Michael Swanson"
+  },
+  "homepage": "https://frictionlesscode.com/writing/fixing-raw-bugs/",
+  "repository": "https://github.com/frictionlesscode/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "bug-triage",
+    "superpowers",
+    "workflows",
+    "testing"
+  ]
+}
