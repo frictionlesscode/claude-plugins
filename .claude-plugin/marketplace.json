@@ -16,6 +16,14 @@
       "name": "writing-technical-articles",
       "source": "./plugins/writing-technical-articles",
       "category": "productivity"
+    },
+    {
+      "name": "ship-android",
+      "source": {
+        "source": "github",
+        "repo": "frictionlesscode/ship-android"
+      },
+      "category": "development"
     }
   ]
 }
