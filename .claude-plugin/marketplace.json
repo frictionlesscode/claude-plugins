@@ -18,6 +18,11 @@
       "category": "productivity"
     },
     {
+      "name": "chinese-reading-check",
+      "source": "./plugins/chinese-reading-check",
+      "category": "education"
+    },
+    {
       "name": "ship-android",
       "source": {
         "source": "github",

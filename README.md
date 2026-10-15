@@ -4,19 +4,20 @@ Claude Code plugins from [frictionlesscode.com](https://frictionlesscode.com).
 This repo is the `frictionlesscode` marketplace; each plugin lives under
 `plugins/`.
 
-Two plugins, one skill each. Both layer on top of
-[Superpowers](https://github.com/obra/superpowers) and both refuse to run
-without it rather than falling back to a worse version of what it already
-does. Install them separately, so taking one does not saddle you with the
-other.
+One skill per plugin. `fixing-raw-bugs` and `writing-technical-articles`
+layer on top of [Superpowers](https://github.com/obra/superpowers) and
+refuse to run without it rather than falling back to a worse version of what
+it already does. `chinese-reading-check` stands alone. Install them
+separately, so taking one does not saddle you with another.
 
 ```
 /plugin marketplace add frictionlesscode/claude-plugins
 /plugin install fixing-raw-bugs@frictionlesscode
 /plugin install writing-technical-articles@frictionlesscode
+/plugin install chinese-reading-check@frictionlesscode
 ```
 
-Superpowers first, if you do not already have it:
+Superpowers first, if you want the first two and do not already have it:
 
 ```
 /plugin marketplace add obra/superpowers-marketplace
@@ -70,6 +71,28 @@ of what one looks like, not as a style you should adopt. Build your own from
 samples of your writing.
 
 Use `/write-article`.
+
+## `chinese-reading-check`
+
+A child records themselves reading a few pages of a Chinese textbook
+aloud. This grades the recording against photos of the pages and publishes a
+review page: the score and characters per minute, the photos with each mistake
+marked, and a card per mistake with the correct characters, pinyin, English,
+a clip of what was read, and a model reading of the word and sentence.
+
+Two local speech models (Paraformer and SenseVoice via
+[sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx)) transcribe the
+recording, and a character only counts as wrong when both disagree with the
+page. Matching is on toneless pinyin, so tones are not graded. Where only one
+model hears a problem the card is marked "Maybe" and the parent decides.
+
+Everything runs through `scripts/readcheck.py` (`prepare`, `grade`,
+`build`). The two steps that need judgment stay with Claude: checking the
+OCR text against the photo, and writing the English and fixing pinyin.
+Models download from sherpa-onnx GitHub releases on first use, about 500 MB.
+
+Use `/check-reading`, or attach a recording and page photos and ask for the
+reading to be checked.
 
 ## Verifying it works
 

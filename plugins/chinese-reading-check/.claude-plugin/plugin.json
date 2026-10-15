@@ -1,0 +1,17 @@
+{
+  "name": "chinese-reading-check",
+  "description": "Grades a child's recorded Chinese read-aloud against photos of the textbook pages. Publishes a review page with the score, marked photos, a clip of each mistake, pinyin, English and a model reading. Runs local speech models; no API keys.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Michael Swanson"
+  },
+  "repository": "https://github.com/frictionlesscode/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "chinese",
+    "mandarin",
+    "reading",
+    "speech",
+    "education"
+  ]
+}

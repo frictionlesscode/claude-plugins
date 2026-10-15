@@ -1,0 +1,216 @@
+<title>__TITLE__</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="__FONT_URL__">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+/* Layout: an exercise-book review sheet. Score up top, then each passage: marked photo, then correction cards. */
+:root{
+  --paper:#f6f8f4; --sheet:#ffffff; --ink:#1c2420; --muted:#5d6b63; --grid:#a9c2b0; --rule:#dfe7e1;
+  --red:#c2372b; --red-wash:rgba(194,55,43,.16); --amber:#b97c06; --amber-wash:rgba(232,165,20,.22);
+  --slate:#4f6a86; --slate-wash:rgba(79,106,134,.12); --ok:#2f7a4f;
+  --han:"Noto Serif SC","Songti SC","SimSun",serif; --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#121815; --sheet:#1a221e; --ink:#e4ebe6; --muted:#9aaba1; --grid:#3f5a49; --rule:#2a3630;
+  --red:#ef7266; --red-wash:rgba(239,114,102,.22); --amber:#f0b445; --amber-wash:rgba(240,180,69,.22);
+  --slate:#93aecb; --slate-wash:rgba(147,174,203,.16); --ok:#6cc495; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121815; --sheet:#1a221e; --ink:#e4ebe6; --muted:#9aaba1; --grid:#3f5a49; --rule:#2a3630;
+  --red:#ef7266; --red-wash:rgba(239,114,102,.22); --amber:#f0b445; --amber-wash:rgba(240,180,69,.22);
+  --slate:#93aecb; --slate-wash:rgba(147,174,203,.16); --ok:#6cc495; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:16px/1.5 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+.wrap{max-width:980px;margin:0 auto;display:grid;gap:28px}
+header{display:grid;gap:14px}
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--han);font-weight:700;font-size:clamp(26px,5vw,38px);line-height:1.15;margin:0;text-wrap:balance}
+.scores{display:flex;flex-wrap:wrap;gap:12px}
+.score{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:12px 16px;min-width:0;flex:1 1 180px}
+.score b{display:block;font-family:var(--han);font-size:34px;line-height:1.1;font-variant-numeric:tabular-nums}
+.score.all b{color:var(--ok)}
+.score span{font-size:14px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:14px;color:var(--muted)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{font:600 17px var(--han);padding:8px 16px;border-radius:999px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+button:focus-visible,label:focus-within{outline:3px solid var(--slate);outline-offset:2px}
+.passage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:820px){.passage{grid-template-columns:minmax(0,1fr)}}
+.photo{position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px);background:var(--sheet);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+@media (max-width:820px){.photo{position:static}}
+.photo .stage{position:relative}
+.photo img{display:block;width:100%;height:auto}
+.photo svg{position:absolute;inset:0;width:100%;height:100%}
+.photo polygon{cursor:pointer;stroke-width:3;vector-effect:non-scaling-stroke;stroke-width:2}
+polygon.misread{fill:var(--red-wash);stroke:var(--red)}
+polygon.skipped{fill:var(--amber-wash);stroke:var(--amber)}
+polygon.possible{fill:transparent;stroke:var(--slate);stroke-dasharray:4 3}
+polygon.off{fill:transparent;stroke:var(--muted);stroke-dasharray:2 4;opacity:.55}
+polygon.active{stroke-width:4;filter:drop-shadow(0 0 4px var(--red))}
+.photo .cap{font-size:13px;color:var(--muted);padding:8px 12px;border-top:1px solid var(--rule)}
+.cards{display:grid;gap:12px;min-width:0}
+.group-h{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:8px 0 0}
+.card{background:var(--sheet);border:1px solid var(--rule);border-left:4px solid var(--red);border-radius:8px;padding:14px;display:grid;gap:10px;min-width:0;scroll-margin-top:16px}
+.card.skipped{border-left-color:var(--amber)}
+.card.possible{border-left-color:var(--slate)}
+.card.off{opacity:.6}
+.card.flash{box-shadow:0 0 0 3px var(--slate)}
+.top{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.tzg{display:flex;flex-wrap:wrap;gap:4px}
+.tzg span{width:52px;height:52px;display:grid;place-items:center;font:700 32px/1 var(--han);border:1.5px solid var(--grid);
+  background:linear-gradient(var(--grid),var(--grid)) center/1px 100% no-repeat,linear-gradient(var(--grid),var(--grid)) center/100% 1px no-repeat;background-color:var(--sheet)}
+.tzg span.err{color:var(--red)}
+.card.skipped .tzg span.err{color:var(--amber)}
+.card.possible .tzg span.err{color:var(--slate)}
+.tzg.long span{width:36px;height:36px;font-size:22px}
+.meaning{min-width:0;flex:1 1 160px}
+.meaning .py{font-size:20px;font-weight:600;letter-spacing:.02em}
+.meaning .en{color:var(--muted)}
+.sent{font-family:var(--han);font-size:19px;line-height:1.7;overflow-wrap:anywhere}
+.sent mark{background:var(--red-wash);color:var(--red);border-radius:3px;padding:0 1px}
+.card.skipped .sent mark{background:var(--amber-wash);color:var(--amber)}
+.card.possible .sent mark{background:var(--slate-wash);color:var(--slate)}
+.heard{font-size:15px;color:var(--muted)}
+.heard b{color:var(--ink);font-weight:600}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{font:600 15px var(--body);padding:8px 12px;border-radius:8px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.btn.her{border-color:var(--red);color:var(--red)}
+.btn.good{border-color:var(--ok);color:var(--ok)}
+.btn.playing{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.count{margin-left:auto;font-size:14px;color:var(--muted);display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+.count input{width:18px;height:18px;accent-color:var(--red)}
+.note{font-size:14px;color:var(--muted);max-width:65ch}
+.empty{color:var(--muted);font-size:15px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow" id="date"></div>
+    <h1 id="title"></h1>
+    <div class="scores" id="scores"></div>
+    <div class="legend">
+      <span><i style="background:var(--red-wash);border:2px solid var(--red)"></i>Misread</span>
+      <span><i style="background:var(--amber-wash);border:2px solid var(--amber)"></i>Skipped</span>
+      <span><i style="border:2px dashed var(--slate)"></i>Maybe (not counted)</span>
+    </div>
+    <p class="note">Tap a highlight on the page or a play button to hear the reading. “Correct” plays a model reading of the word; “Sentence” reads the whole sentence. Untick “Count it” if a mark is wrong, or tick a “maybe” to count it. The score updates.</p>
+  </header>
+  <nav class="tabs" id="tabs" role="tablist"></nav>
+  <section class="passage" id="passage"></section>
+</div>
+<audio id="player" preload="none"></audio>
+
+<script>
+const D = __DATA__;
+const KEY = "readcheck-" + D.run;
+let over = {};
+try { over = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
+const counted = it => (it.id in over) ? over[it.id] : it.kind !== "possible";
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(over)); } catch (e) {} };
+let cur = 0;
+try { cur = +(localStorage.getItem(KEY + "-tab") || 0) || 0; } catch (e) {}
+if (cur >= D.pages.length) cur = 0;
+const $ = s => document.querySelector(s);
+const el = (t, a = {}, ...kids) => { const e = document.createElement(t);
+  for (const [k, v] of Object.entries(a)) k === "class" ? e.className = v : k.startsWith("on") ? e.addEventListener(k.slice(2), v) : e.setAttribute(k, v);
+  for (const k of kids) e.append(k); return e; };
+
+$("#date").textContent = D.date;
+$("#title").textContent = D.pages.map(p => p.title).join(" · ");
+
+function scores() {
+  const box = $("#scores"); box.innerHTML = "";
+  let N = 0, E = 0;
+  const rows = D.pages.map((p, i) => {
+    const e = D.items.filter(it => it.page === i && counted(it)).reduce((s, it) => s + it.n, 0);
+    N += p.n; E += e;
+    return { p, e };
+  });
+  const pct = (n, e) => (100 * (n - e) / n).toFixed(1) + "%";
+  box.append(el("div", { class: "score all" }, el("b", {}, pct(N, E)), el("span", {}, `Overall · ${N - E} of ${N} characters right`)));
+  for (const { p, e } of rows) {
+    const cpm = p.seconds ? Math.round(p.n / p.seconds * 60) : "–";
+    box.append(el("div", { class: "score" }, el("b", {}, pct(p.n, e)), el("span", {}, `${p.title} · ${e} errors · ${cpm} chars/min`)));
+  }
+}
+
+const player = $("#player");
+let playingBtn = null;
+function play(src, btn) {
+  if (playingBtn) playingBtn.classList.remove("playing");
+  if (playingBtn === btn && !player.paused) { player.pause(); playingBtn = null; return; }
+  player.src = src; player.currentTime = 0;
+  player.play().catch(() => {});
+  playingBtn = btn; if (btn) btn.classList.add("playing");
+}
+player.addEventListener("ended", () => { if (playingBtn) playingBtn.classList.remove("playing"); playingBtn = null; });
+
+function tabs() {
+  const t = $("#tabs"); t.innerHTML = "";
+  D.pages.forEach((p, i) => t.append(el("button", { role: "tab", "aria-selected": i === cur ? "true" : "false", id: "tab" + i,
+    onclick: () => { cur = i; try { localStorage.setItem(KEY + "-tab", i); } catch (e) {} tabs(); render(); } }, p.title)));
+}
+
+function card(it) {
+  const chars = [...it.word];
+  const errChars = new Set([...it.text]);
+  const tz = el("div", { class: "tzg" + (chars.length > 6 ? " long" : "") });
+  chars.forEach(c => { if (/[一-鿿]/.test(c)) tz.append(el("span", { class: errChars.has(c) ? "err" : "" }, c)); });
+  const sent = el("div", { class: "sent" });
+  [...it.sentence].forEach((c, k) => sent.append(it.flags[k] ? el("mark", {}, c) : c));
+  const heard = el("div", { class: "heard" });
+  if (it.kind === "skipped") heard.append("Skipped in the recording");
+  else if (it.said) heard.append("Heard instead: ", el("b", {}, it.said_py), ` (${it.said})`);
+  const bHer = el("button", { class: "btn her", type: "button", onclick: e => play(it.clip, e.currentTarget) }, "▶ Recording");
+  const bOk = el("button", { class: "btn good", type: "button", onclick: e => play(it.tts_word, e.currentTarget) }, "▶ Correct");
+  const bS = el("button", { class: "btn", type: "button", onclick: e => play(it.tts_sent, e.currentTarget) }, "▶ Sentence");
+  const cb = el("input", { type: "checkbox", id: "c-" + it.id });
+  cb.checked = counted(it);
+  cb.addEventListener("change", () => { over[it.id] = cb.checked; save(); scores(); render(it.id); });
+  const c = el("article", { class: `card ${it.kind}${counted(it) ? "" : " off"}`, id: "card-" + it.id },
+    el("div", { class: "top" }, tz, el("div", { class: "meaning" }, el("div", { class: "py" }, it.py), el("div", { class: "en" }, it.en))),
+    sent, heard,
+    el("div", { class: "row" }, bHer, bOk, bS, el("label", { class: "count", for: "c-" + it.id }, cb, "Count it")));
+  return c;
+}
+
+function render(focusId) {
+  const p = D.pages[cur], box = $("#passage"); box.innerHTML = "";
+  const its = D.items.filter(it => it.page === cur);
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", `0 0 ${p.w} ${p.h}`); svg.setAttribute("preserveAspectRatio", "none");
+  its.forEach(it => it.polys.forEach(q => {
+    const pg = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    pg.setAttribute("points", q.map(x => x.join(",")).join(" "));
+    pg.setAttribute("class", counted(it) ? it.kind : (it.kind === "possible" ? "possible" : "off"));
+    pg.dataset.id = it.id;
+    pg.addEventListener("click", () => {
+      const c = document.getElementById("card-" + it.id);
+      document.querySelectorAll(".card.flash").forEach(x => x.classList.remove("flash"));
+      if (c) { c.classList.add("flash"); c.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" }); }
+      play(it.clip, c && c.querySelector(".btn.her"));
+    });
+    svg.append(pg);
+  }));
+  const img = el("img", { src: p.image, alt: `Photo of the page ${p.title} with reading mistakes marked`, width: p.w, height: p.h });
+  box.append(el("div", { class: "photo" }, el("div", { class: "stage" }, img, svg),
+    el("div", { class: "cap" }, "Tap a mark to hear that part of the recording.")));
+  const cards = el("div", { class: "cards" });
+  const real = its.filter(it => it.kind !== "possible"), maybe = its.filter(it => it.kind === "possible");
+  cards.append(el("h2", { class: "group-h" }, `Mistakes · ${real.length}`));
+  real.length ? real.forEach(it => cards.append(card(it))) : cards.append(el("p", { class: "empty" }, "No mistakes found on this page."));
+  if (maybe.length) {
+    cards.append(el("h2", { class: "group-h" }, `Maybe · ${maybe.length}`));
+    cards.append(el("p", { class: "note" }, "Only one of the two speech models heard a difference here. Listen and tick “Count it” if it was wrong."));
+    maybe.forEach(it => cards.append(card(it)));
+  }
+  box.append(cards);
+  if (focusId) { const c = document.getElementById("card-" + focusId); if (c) c.classList.add("flash"); }
+}
+scores(); tabs(); render();
+</script>
