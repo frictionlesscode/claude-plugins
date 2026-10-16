@@ -7,14 +7,15 @@ This repo is the `frictionlesscode` marketplace; each plugin lives under
 One skill per plugin. `fixing-raw-bugs` and `writing-technical-articles`
 layer on top of [Superpowers](https://github.com/obra/superpowers) and
 refuse to run without it rather than falling back to a worse version of what
-it already does. `chinese-reading-check` stands alone. Install them
-separately, so taking one does not saddle you with another.
+it already does. `chinese-reading-check` and `product-video` stand alone.
+Install them separately, so taking one does not saddle you with another.
 
 ```
 /plugin marketplace add frictionlesscode/claude-plugins
 /plugin install fixing-raw-bugs@frictionlesscode
 /plugin install writing-technical-articles@frictionlesscode
 /plugin install chinese-reading-check@frictionlesscode
+/plugin install product-video@frictionlesscode
 ```
 
 Superpowers first, if you want the first two and do not already have it:
@@ -93,6 +94,21 @@ Models download from sherpa-onnx GitHub releases on first use, about 500 MB.
 
 Use `/check-reading`, or attach a recording and page photos and ask for the
 reading to be checked.
+
+## `product-video`
+
+Turns an app's real screen recordings and screenshots into a 15-30 second
+launch-style video, closer to a product launch than a screen-recording
+tutorial. It tells one story, uses the real UI (freezes, speed ramps and
+crops, never repainting), and keeps captions to what the footage supports.
+
+`assets/remotion-starter/` is the working Remotion project from a shipped
+RuckPace video. Copy it into your repo, swap the brand values in
+`src/brand.ts` for your app's colours and fonts, and write a new `SCENES`
+array in `src/Promo.tsx`. One storyboard renders both 1920x1080 and
+1080x1920. Needs Node and FFmpeg.
+
+Use `/product-video`, or ask for a promo video from your recordings.
 
 ## Verifying it works
 

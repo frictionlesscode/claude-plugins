@@ -1,0 +1,23 @@
+{
+  "name": "ruckpace-promo",
+  "version": "1.0.0",
+  "description": "RuckPace promo video (Remotion)",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Landscape out/ruckpace-landscape.mp4 --crf 18 && remotion render src/index.ts Portrait out/ruckpace-portrait.mp4 --crf 18",
+    "typecheck": "tsc"
+  },
+  "type": "module",
+  "dependencies": {
+    "@remotion/cli": "^4.0.533",
+    "@remotion/fonts": "^4.0.533",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "^4.0.533"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "^7.0.2"
+  },
+  "private": true
+}
