@@ -23,6 +23,11 @@
       "category": "education"
     },
     {
+      "name": "product-video",
+      "source": "./plugins/product-video",
+      "category": "productivity"
+    },
+    {
       "name": "ship-android",
       "source": {
         "source": "github",

@@ -1,0 +1,17 @@
+{
+  "name": "product-video",
+  "description": "Turns an app's real screen recordings and screenshots into a 15-30 s launch-style product video with Remotion and FFmpeg, in 16:9 and 9:16. Ships a working Remotion starter: device framing, camera pushes, spotlights, speed ramps and captions.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Michael Swanson"
+  },
+  "repository": "https://github.com/frictionlesscode/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "video",
+    "remotion",
+    "ffmpeg",
+    "promo",
+    "marketing"
+  ]
+}
