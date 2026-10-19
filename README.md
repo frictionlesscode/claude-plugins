@@ -95,6 +95,22 @@ Models download from sherpa-onnx GitHub releases on first use, about 500 MB.
 Use `/check-reading`, or attach a recording and page photos and ask for the
 reading to be checked.
 
+### In the Claude app (claude.ai, desktop, mobile)
+
+No Claude Code needed. Download
+[`chinese-reading-check.zip`](https://github.com/frictionlesscode/claude-plugins/releases/download/chinese-reading-check/chinese-reading-check.zip),
+then:
+
+1. Settings > Capabilities: turn on **Code execution and file creation**.
+2. In the Skills section of Settings, click **+**, then **Create skill >
+   Upload a skill**, pick the zip, and make sure it is toggled on.
+3. In a new chat, attach the recording and a photo of each page, and ask
+   Claude to check the reading.
+
+The first run takes a few extra minutes while the speech models download.
+The zip is rebuilt from `main` whenever the skill changes; re-upload it to
+pick up a new version.
+
 ## `product-video`
 
 Turns an app's real screen recordings and screenshots into a 15-30 second
