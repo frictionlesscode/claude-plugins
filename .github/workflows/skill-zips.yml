@@ -1,0 +1,44 @@
+name: Skill zips
+
+# Rebuilds the claude.ai upload zip for each standalone skill and attaches it
+# to a release whose tag is the skill name, so the download URL never changes:
+# https://github.com/frictionlesscode/claude-plugins/releases/download/<skill>/<skill>.zip
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "plugins/chinese-reading-check/skills/**"
+      - ".github/workflows/skill-zips.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        skill: [chinese-reading-check]
+    env:
+      SKILL: ${{ matrix.skill }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build zip
+        run: |
+          cd "plugins/$SKILL/skills"
+          zip -qrX "$GITHUB_WORKSPACE/$SKILL.zip" "$SKILL" -x '*/__pycache__/*' '*.pyc' '*/.DS_Store'
+          unzip -l "$GITHUB_WORKSPACE/$SKILL.zip"
+          unzip -l "$GITHUB_WORKSPACE/$SKILL.zip" | grep -q " $SKILL/SKILL.md$"
+
+      - name: Upload to release
+        run: |
+          if ! gh release view "$SKILL" >/dev/null 2>&1; then
+            gh release create "$SKILL" --target "$GITHUB_SHA" --latest=false \
+              --title "$SKILL (Claude app skill)" \
+              --notes "Install steps: https://github.com/frictionlesscode/claude-plugins#in-the-claude-app-claudeai-desktop-mobile The zip is rebuilt from main on every change to the skill, so this link always serves the current version."
+          fi
+          gh release upload "$SKILL" "$SKILL.zip" --clobber
