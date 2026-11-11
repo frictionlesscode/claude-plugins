@@ -28,6 +28,11 @@
       "category": "productivity"
     },
     {
+      "name": "medium-sync",
+      "source": "./plugins/medium-sync",
+      "category": "productivity"
+    },
+    {
       "name": "ship-android",
       "source": {
         "source": "github",

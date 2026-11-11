@@ -1,0 +1,17 @@
+{
+  "name": "medium-sync",
+  "description": "Cross-posts new or updated articles from your site's RSS feed to Medium as drafts, with your site as the canonical URL. Drives Medium through Claude in Chrome; never publishes.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Michael Swanson"
+  },
+  "repository": "https://github.com/frictionlesscode/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "medium",
+    "cross-post",
+    "blogging",
+    "canonical",
+    "rss"
+  ]
+}
