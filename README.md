@@ -7,7 +7,7 @@ This repo is the `frictionlesscode` marketplace; each plugin lives under
 One skill per plugin. `fixing-raw-bugs` and `writing-technical-articles`
 layer on top of [Superpowers](https://github.com/obra/superpowers) and
 refuse to run without it rather than falling back to a worse version of what
-it already does. `chinese-reading-check` and `product-video` stand alone.
+it already does. `chinese-reading-check`, `product-video` and `medium-sync` stand alone.
 Install them separately, so taking one does not saddle you with another.
 
 ```
@@ -16,6 +16,7 @@ Install them separately, so taking one does not saddle you with another.
 /plugin install writing-technical-articles@frictionlesscode
 /plugin install chinese-reading-check@frictionlesscode
 /plugin install product-video@frictionlesscode
+/plugin install medium-sync@frictionlesscode
 ```
 
 Superpowers first, if you want the first two and do not already have it:
@@ -125,6 +126,21 @@ array in `src/Promo.tsx`. One storyboard renders both 1920x1080 and
 1080x1920. Needs Node and FFmpeg.
 
 Use `/product-video`, or ask for a promo video from your recordings.
+
+## `medium-sync`
+
+Cross-posts your own articles to Medium as drafts, with your site as the
+canonical URL so search engines credit the original. It reads your site's
+RSS feed, lists what is new or changed since the last sync, imports new
+posts through Medium's importer, and then repairs what the importer breaks:
+dropped code blocks, tables, videos and out-of-order paragraphs.
+
+Medium has no usable API for this, so it drives your logged-in Chrome
+through Claude in Chrome. It never publishes; you do. On first run it asks
+for your feed URL and keeps its state in `~/.medium-sync/`, outside the
+plugin.
+
+Use `/medium-sync`, or ask to cross-post to Medium.
 
 ## Verifying it works
 
