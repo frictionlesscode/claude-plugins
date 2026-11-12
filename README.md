@@ -7,7 +7,7 @@ This repo is the `frictionlesscode` marketplace; each plugin lives under
 One skill per plugin. `fixing-raw-bugs` and `writing-technical-articles`
 layer on top of [Superpowers](https://github.com/obra/superpowers) and
 refuse to run without it rather than falling back to a worse version of what
-it already does. `chinese-reading-check`, `product-video` and `medium-sync` stand alone.
+it already does. `chinese-reading-check`, `product-video`, `medium-sync` and `codex-graphic` stand alone.
 Install them separately, so taking one does not saddle you with another.
 
 ```
@@ -17,6 +17,7 @@ Install them separately, so taking one does not saddle you with another.
 /plugin install chinese-reading-check@frictionlesscode
 /plugin install product-video@frictionlesscode
 /plugin install medium-sync@frictionlesscode
+/plugin install codex-graphic@frictionlesscode
 ```
 
 Superpowers first, if you want the first two and do not already have it:
@@ -141,6 +142,21 @@ for your feed URL and keeps its state in `~/.medium-sync/`, outside the
 plugin.
 
 Use `/medium-sync`, or ask to cross-post to Medium.
+
+## `codex-graphic`
+
+Hands graphics to OpenAI's Codex CLI while Claude stays in charge. Claude
+writes the brief (every word and number verbatim, the palette, the size),
+runs `codex exec`, opens what comes back, and sends exact fixes to the same
+Codex session until it matches. Illustrations come back as generated images.
+Anything a reader has to trust, like charts, diagrams and labels, comes back
+as an HTML page that Claude renders, because image models still misspell
+words and move numbers.
+
+Needs the Codex CLI signed in with a ChatGPT plan (`codex login`); no API
+key, no per-image bill.
+
+Use `/codex-graphic`, or ask for an illustration or chart made with Codex.
 
 ## Verifying it works
 

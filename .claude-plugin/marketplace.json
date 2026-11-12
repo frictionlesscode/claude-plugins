@@ -33,6 +33,11 @@
       "category": "productivity"
     },
     {
+      "name": "codex-graphic",
+      "source": "./plugins/codex-graphic",
+      "category": "productivity"
+    },
+    {
       "name": "ship-android",
       "source": {
         "source": "github",
