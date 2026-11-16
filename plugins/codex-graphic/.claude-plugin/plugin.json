@@ -1,0 +1,17 @@
+{
+  "name": "codex-graphic",
+  "description": "Has OpenAI's Codex CLI draw graphics for articles and pages while Claude writes the brief, checks every word and number, and sends fixes back. Uses your ChatGPT sign-in, so no API key.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Michael Swanson"
+  },
+  "repository": "https://github.com/frictionlesscode/claude-plugins",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "openai",
+    "image-generation",
+    "illustration",
+    "graphics"
+  ]
+}
